@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const app = express();
-const messageDetails = []
+const messageDetails = [];
 
 app.use(bodyParser.json()); // to support JSON-encoded bodies
 app.use(
@@ -13,14 +13,14 @@ app.use(
 );
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
-app.get("/get-messages", (req, res)=>{
-res.json(messageDetails)
-})
+app.get("/get-messages", (req, res) => {
+  res.json(messageDetails);
+});
 app.post("/post-data", (req, res) => {
   messageDetails.push({
-     message : req.body.message,
-     username : req.body.username,
-     date : new Date()
+    message: req.body.message,
+    username: req.body.username,
+    date: new Date(),
   });
   res.redirect("index.html");
   console.log(messageDetails);
