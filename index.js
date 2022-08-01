@@ -1,9 +1,13 @@
 const express = require("express");
 const path = require("path");
+const cors = require("cors")
 const bodyParser = require("body-parser");
+require("dotenv").config()
 const app = express();
+const port = process.env.PORT || 3000
 const messageDetails = [];
 
+app.use(cors());
 app.use(bodyParser.json()); // to support JSON-encoded bodies
 app.use(
   bodyParser.urlencoded({
@@ -25,6 +29,6 @@ app.post("/post-data", (req, res) => {
   res.redirect("index.html");
   console.log(messageDetails);
 });
-app.listen(3000, () => {
-  console.log("Listing on the PORT 3000");
+app.listen(port, () => {
+  console.log(`Listing on port ${port}`);
 });
